@@ -36,7 +36,7 @@
         </code>
       </pre>
 
-			<img src="{{ currenturl }}330/380" />
+			<img src="{{ currenturl }}500/380" />
 		</main>
 
 	</body>
