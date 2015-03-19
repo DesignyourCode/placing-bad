@@ -27,6 +27,15 @@
 				</code>
 			</pre>
 
+      <p><strong>Want a certain character...use any below</strong></p>
+      <pre>
+        <code>
+          {% for person in people %}
+            {{ currenturl }}{{ person }}/width/height
+          {% endfor %}
+        </code>
+      </pre>
+
 			<img src="{{ currenturl }}330/380" />
 		</main>
 

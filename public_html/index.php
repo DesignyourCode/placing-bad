@@ -2,7 +2,7 @@
     require '../vendor/autoload.php';
 
     $loader = new Twig_Loader_Filesystem('../templates');
-    $twig = new Twig_Environment($loader /* ,array(twig config) */);
+    $twig = new Twig_Environment($loader, array('debug' => true));
 
     $app = new \Slim\Slim();
 
@@ -15,24 +15,34 @@
 
     // Homepage
     $app->get('/', function() use($app, $twig) {
-        
+
+        $people = array();
+
+        $dir = new DirectoryIterator('img/');
+        foreach ($dir as $fileinfo) {
+          if ($fileinfo->isDir() && !$fileinfo->isDot()) {
+            array_push($people, $fileinfo->getFilename());
+          }
+        }
+
         $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-        
-        // $app->render('homeTemplate.php');
+
         $template = $twig->loadTemplate('homeTemplate.php');
         echo $template->render(array(
-            'currenturl' => $currentURL
+            'currenturl' => $currentURL,
+            'people' => $people
         ));
+
     });
 
     $app->get('/:width', function($width) use($app) {
-        //just redirect them to the width & height route 
+        //just redirect them to the width & height route
         $app->response()->redirect("/$width/$width", 303);
     });
 
     $app->get('/:width/:height', function($width, $height) use($app) {
         if($width > 1500 || $height > 1500) {
-            echo "Woah now...do you really want to serve an image that size?"; 
+            echo "Woah now...do you really want to serve an image that size?";
             die();
         }
 
