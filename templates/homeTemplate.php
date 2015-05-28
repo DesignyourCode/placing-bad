@@ -13,18 +13,14 @@
 			<h2>How to use:</h2>
 			<p><strong>If you know the width and height:</strong></p>
 			<pre>
-				<code>
-					{{ currenturl }}200/200
-					{{ currenturl }}width/height
-				</code>
+				<code>{{ currenturl }}200/200
+{{ currenturl }}width/height</code>
 			</pre>
 
 			<p><strong>If you want a square, just specify the width:</strong></p>
 			<pre>
-				<code>
-					{{ currenturl }}200
-					{{ currenturl }}width
-				</code>
+				<code>{{ currenturl }}200
+{{ currenturl }}width</code>
 			</pre>
 
       <p><strong>Want a certain character...use any below</strong></p>
@@ -36,7 +32,7 @@
         </code>
       </pre>
 
-			<img src="{{ currenturl }}330/380" />
+			<img src="{{ currenturl }}500/380" />
 		</main>
 
 	</body>
