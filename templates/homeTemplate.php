@@ -2,37 +2,50 @@
 <html>
 	<head>
 		<title>Placing Bad</title>
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 	</head>
 
 	<body>
-		<main>
-			<h1>Placing Bad</h1>
-			<p>I am the one who...adds placeholders to my site ;)</p>
 
-			<h2>How to use:</h2>
-			<p><strong>If you know the width and height:</strong></p>
-			<pre>
-				<code>{{ currenturl }}200/200
+        <header>
+            <div class="content">
+    			<h1>Placing Bad</h1>
+                <p>This is a placeholder generator for developers to add to their sites, to help with testing. But what developer doesn't like Breaking Bad.</p>
+    			<p class="quote">&ldquo;I am the one who...adds placeholders to my site&rdquo;</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="content">
+    			<div class="left half">
+                    <h2>How to use:</h2>
+        			<p><strong>If you know the width and height:</strong></p>
+        			<pre>
+        				<code>{{ currenturl }}200/200
 {{ currenturl }}width/height</code>
-			</pre>
+        			</pre>
 
-			<p><strong>If you want a square, just specify the width:</strong></p>
-			<pre>
-				<code>{{ currenturl }}200
+        			<p><strong>If you want a square, just specify the width:</strong></p>
+        			<pre>
+        				<code>{{ currenturl }}200
 {{ currenturl }}width</code>
-			</pre>
+        			</pre>
 
-      <p><strong>Want a certain character...use any below</strong></p>
-      <pre>
-        <code>
-          {% for person in people %}
-            {{ currenturl }}{{ person }}/width/height
-          {% endfor %}
-        </code>
-      </pre>
+                    <p><strong>Want a certain character...use any below</strong></p>
+                    <pre>
+                        <code>{% for person in people %}
+{{ currenturl }}<strong>{{ person }}</strong>/width/height
+{% endfor %}</code>
+                    </pre>
+                </div>
 
-			<img src="{{ currenturl }}500/380" />
+                <div class="right half">
+                	<img src="{{ currenturl }}500/380" />
+                    <img src="{{ currenturl }}800" />
+                    <img src="{{ currenturl }}500/100" />
+                </div>
+
+            </div>
 		</main>
 
 	</body>
