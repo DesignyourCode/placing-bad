@@ -25,11 +25,10 @@ p {
 }
 
 header {
-    background: url("../img/bg.jpg") no-repeat scroll 0 0 #50879B;
+    background: url("../img/bg.jpg") no-repeat scroll 0 center #50879B;
     background-size: cover;
     color: #ffffff;
-    padding: 60px;
-    height: 400px;
+    padding: 20px 0 210px;
     text-align: center;
 }
 
