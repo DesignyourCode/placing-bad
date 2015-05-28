@@ -2,6 +2,7 @@
     "require": {
         "slim/slim": "~2.6",
         "twig/twig": "~1.0",
-        "abeautifulsite/simpleimage": "2.5.5"
+        "abeautifulsite/simpleimage": "2.5.5",
+        "ext-gd": "*"
     }
 }
