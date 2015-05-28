@@ -41,37 +41,24 @@
         $app->response()->redirect("/$width/$width", 303);
     });
 
+
     $app->get('/:width/:height', function($width, $height) use($app) {
         if($width > 1500 || $height > 1500) {
             echo "Woah now...do you really want to serve an image that size?";
             die();
         }
 
-        $placeBad = getPlaceBad();
+        $placeBad = getPlaceBad('');
 
-        $app = \Slim\Slim::getInstance();
-        $response = $app->response();
-        $response['Content-Type'] = 'image/jpeg';
+        serve($width, $height, $placeBad);
 
-        $img = new abeautifulsite\SimpleImage($placeBad);
+    });
 
-        if ($width > $height) {
+    $app->get('/:width/:height/:person', function($width, $height, $person) use($app) {
 
-            $img->fit_to_height($height)
-                ->crop(0, 0, $width, $height)
-                ->output();
+        $placePersonBad = getPlaceBad( $person );
 
-        } elseif ($width < $height) {
-
-            $img->fit_to_height($height)
-                ->crop(0, 0,$width, $height)
-                ->output();
-
-        } else {
-            $img->resize($width, $height)
-                ->crop(0, 0, $width, $height)
-                ->output();
-        }
+        serve($width, $height, $placePersonBad);
 
     });
 

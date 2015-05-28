@@ -34,7 +34,7 @@
                     <p><strong>Want a certain character...use any below</strong></p>
                     <pre>
                         <code>{% for person in people %}
-{{ currenturl }}<strong>{{ person }}</strong>/width/height
+{{ currenturl }}width/height/<strong>{{ person }}</strong>
 {% endfor %}</code>
                     </pre>
                 </div>
