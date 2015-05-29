@@ -16,7 +16,7 @@ Requirements & Installation
 ---------------------------
 
 1. Run 'composer install' or 'composer update'. This will install:
-    - [Slim PHP Framework](http://www.slimframework.com/){:target="_blank"}
-    - [Twig PHP Templating Engine](http://twig.sensiolabs.org/){:target="_blank"}
-    - [SimpleImage PHP Class](https://github.com/claviska/SimpleImage){:target="_blank"}
+    - <a href="http://www.slimframework.com/" target="_blank">Slim PHP Framework</a>
+    - <a href="http://twig.sensiolabs.org/" target="_blank">Twig PHP Templating Engine</a>
+    - <a href="https://github.com/claviska/SimpleImage" target="_blank">SimpleImage PHP Class</a>
 2. Set your localhost to use public_html as the root
