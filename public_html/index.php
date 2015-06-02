@@ -1,12 +1,10 @@
 <?php
     require '../vendor/autoload.php';
+    require 'functions.php';
 
     $loader = new Twig_Loader_Filesystem('../templates');
     $twig = new Twig_Environment($loader, array('debug' => true));
-
     $app = new \Slim\Slim();
-
-    require 'functions.php';
 
     //Add an application-wide condition to width/height parameters
     \Slim\Route::setDefaultConditions(array(
@@ -48,18 +46,12 @@
             die();
         }
 
-        $placeBad = getPlaceBad('');
-
-        serve($width, $height, $placeBad);
-
+        serve($width, $height, '');
     });
 
     $app->get('/:width/:height/:person', function($width, $height, $person) use($app) {
 
-        $placePersonBad = getPlaceBad( $person );
-
-        serve($width, $height, $placePersonBad);
-
+        serve($width, $height, $person);
     });
 
 $app->run();

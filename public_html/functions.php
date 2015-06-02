@@ -1,61 +1,64 @@
 <?php
 
-function getBestImage($width, $height) {
-    print 'Looking for image: width:'.$width.' and height:'.$height.'<br /><br />';
+function getBestImage($width, $height, $person)
+{
+    // print '<strong>Looking for image: width: '.$width.' and height: '.$height.' and person: ' . $person . '</strong><br /><br />';
 
-    $dir = 'img/';
+    if ( is_null($person) ) {
+        $dir = 'img/';
+    } else {
+        $dir = 'img/' . $person . '/';
+    }
+
     $files = scandir($dir);
 
+    $bestWDiff = PHP_INT_MAX;
+    $bestHDiff = PHP_INT_MAX;
+
     foreach($files as $file) {
-        if ($file != '.' && $file != '..') {
+        if ( is_file($dir . $file) && $file !== '.DS_Store') {
             $info = getimagesize($dir . $file);
             $fileWidth = $info[0];
             $fileHeight = $info[1];
-            print 'file: ' . $file . ' | '. $fileWidth .' x '. $fileHeight . '<br /><br />';
+            // print 'file: ' . $file . ' | '. $fileWidth .' x '. $fileHeight . '<br /><br />';
+
+            if ( abs($fileWidth - $width) < $bestWDiff ) {
+                $bestWDiff = abs($fileWidth - $width);
+                $bestForW = $file;
+            }
+            if ( abs($fileHeight - $height) < $bestHDiff ) {
+                $bestHDiff = abs($fileHeight - $height);
+                $bestForH = $file;
+            }
         }
     }
 
-}
+    // Detect request orientation
+    if ($width > $height) {
 
-function getPlaceBad($person)
-{
-    if ( is_null($person) ) {
-        $imgDir = glob('img/*.*');
+        // Choose landscape picture
+        return $dir . $bestForW;
+
+    } elseif ($width < $height) {
+
+        // Portrait
+        return $dir . $bestForH;
+
     } else {
-        $imgDir = glob('img/' . $person . '/*.*');
+        //Return for square
+        return $dir . $bestForW;
     }
-
-    $img = array_rand($imgDir);
-    return $imgDir[$img];
-
 }
 
-function serve($width, $height, $placeBad)
+function serve($width, $height, $person)
 {
     $app = \Slim\Slim::getInstance();
 
-    // $response = $app->response();
-    // $response['Content-Type'] = 'image/jpeg';
+    $response = $app->response();
+    $response['Content-Type'] = 'image/jpeg';
 
-    getBestImage($width, $height);
+    $img = new abeautifulsite\SimpleImage( getBestImage($width, $height, $person) );
 
-    // $img = new abeautifulsite\SimpleImage($placeBad);
-
-    // if ($width > $height) {
-
-    //     $img->fit_to_width($width)
-    //         ->crop(0, 0, $width, $height)
-    //         ->output();
-
-    // } elseif ($width < $height) {
-
-    //     $img->fit_to_height($height)
-    //         ->crop(0, 0,$width, $height)
-    //         ->output();
-
-    // } else {
-    //     $img->best_fit($width, $height)
-    //         ->crop(0, 0, $width, $height)
-    //         ->output();
-    // }
+    $img->crop(0, 0, $width, $height)
+        ->output();
 }
