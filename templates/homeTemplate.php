@@ -6,7 +6,6 @@
 	</head>
 
 	<body>
-
         <header>
             <div class="content">
     			<h1>Placing Bad</h1>

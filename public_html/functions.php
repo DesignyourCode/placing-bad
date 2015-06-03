@@ -59,6 +59,15 @@ function serve($width, $height, $person)
 
     $img = new abeautifulsite\SimpleImage( getBestImage($width, $height, $person) );
 
-    $img->crop(0, 0, $width, $height)
-        ->output();
+    $centreX = round($img->get_width() / 2);
+    $centreY = round($img->get_height() / 2);
+
+    $x1 = $centreX - $width / 2;
+    $y1 = $centreY - $height / 2;
+
+    $x2 = $centreX + $width / 2;
+    $y2 = $centreY + $height / 2;
+
+    $img->crop($x1, $y1, $x2, $y2);
+    $img->output();
 }
