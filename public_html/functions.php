@@ -11,43 +11,24 @@ function getBestImage($width, $height, $person)
     }
 
     $files = scandir($dir);
-
-    $bestWDiff = PHP_INT_MAX;
-    $bestHDiff = PHP_INT_MAX;
+    $best = PHP_INT_MAX;
+    $match = $files[2];
+    $requestedAspect = $width/$height;
 
     foreach($files as $file) {
         if ( is_file($dir . $file) && $file !== '.DS_Store') {
             $info = getimagesize($dir . $file);
-            $fileWidth = $info[0];
-            $fileHeight = $info[1];
-            // print 'file: ' . $file . ' | '. $fileWidth .' x '. $fileHeight . '<br /><br />';
-
-            if ( abs($fileWidth - $width) < $bestWDiff ) {
-                $bestWDiff = abs($fileWidth - $width);
-                $bestForW = $file;
-            }
-            if ( abs($fileHeight - $height) < $bestHDiff ) {
-                $bestHDiff = abs($fileHeight - $height);
-                $bestForH = $file;
+            $aspect = $info[0]/$info[1];
+            $diff = $requestedAspect - $aspect;
+            if(abs($diff)<$best){
+                $best = abs($diff);
+                $match = $file;
             }
         }
     }
 
-    // Detect request orientation
-    if ($width > $height) {
+    return $dir . $match;
 
-        // Choose landscape picture
-        return $dir . $bestForW;
-
-    } elseif ($width < $height) {
-
-        // Portrait
-        return $dir . $bestForH;
-
-    } else {
-        //Return for square
-        return $dir . $bestForW;
-    }
 }
 
 function serve($width, $height, $person)
@@ -59,15 +40,20 @@ function serve($width, $height, $person)
 
     $img = new abeautifulsite\SimpleImage( getBestImage($width, $height, $person) );
 
-    $centreX = round($img->get_width() / 2);
-    $centreY = round($img->get_height() / 2);
+    if($img->get_width()/$img->get_height() >= $width/$height){
+        $img->fit_to_height($height);
+        $centre = round($width / 2);
+        $x1 = $centre - ($width / 2);
+        $x2 = $centre + ($width / 2);
+        $img->crop($x1, 0, $x2, $height);
+    } else {
+        $img->fit_to_width($width);
+        $centre = round($height / 2);
+        $y1 = $centre - ($height / 2);
+        $y2 = $centre + ($height / 2);
+        $img->crop(0, $y1, $width, $y2);
+    }
 
-    $x1 = $centreX - $width / 2;
-    $y1 = $centreY - $height / 2;
 
-    $x2 = $centreX + $width / 2;
-    $y2 = $centreY + $height / 2;
-
-    $img->crop($x1, $y1, $x2, $y2);
     $img->output();
 }
