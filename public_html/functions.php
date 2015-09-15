@@ -2,8 +2,6 @@
 
 function getBestImage($width, $height, $person)
 {
-    // print '<strong>Looking for image: width: '.$width.' and height: '.$height.' and person: ' . $person . '</strong><br /><br />';
-
     if ( is_null($person) ) {
         $dir = 'img/';
     } else {
@@ -28,7 +26,6 @@ function getBestImage($width, $height, $person)
     }
 
     return $dir . $match;
-
 }
 
 function serve($width, $height, $person)
@@ -53,7 +50,6 @@ function serve($width, $height, $person)
         $y2 = $centre + ($height / 2);
         $img->crop(0, $y1, $width, $y2);
     }
-
 
     $img->output();
 }

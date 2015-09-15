@@ -41,7 +41,7 @@
                 <div class="right half">
                 	<img src="{{ currenturl }}500/380" />
                     <img src="{{ currenturl }}800" />
-                    <img src="{{ currenturl }}500/100" />
+                    <img src="{{ currenturl }}500/200/gus" />
                 </div>
 
             </div>
