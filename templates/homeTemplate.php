@@ -9,6 +9,7 @@
         <header>
             <div class="content">
     			<h1>Placing Bad</h1>
+                <p>Hello</p>
                 <p>This is a placeholder generator for developers to add to their sites, to help with testing. But what developer doesn't like Breaking Bad.</p>
     			<p class="quote">&ldquo;I am the one who...adds placeholders to my site&rdquo;</p>
             </div>
