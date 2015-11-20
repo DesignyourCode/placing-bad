@@ -7,7 +7,7 @@ Enter 'Placing Bad'. With this placeholder service you can manufacture your site
 Improvements
 ------------
 
-Will we accept changes to the site. Yes. If you feel the service doesn't quite offer everything you want, you can create a ticket and if we think your idead is a good one, we will try to implement it.
+Will we accept changes to the site? Yes. If you feel the service doesn't quite offer everything you want, you can create a ticket and if we think your idead is a good one, we will try to implement it.
 
 So you want to contribute? That's cool too, fork a copy, make you changes and submit a merge request. We will review and if we like it, we will include it.
 
@@ -15,7 +15,7 @@ So you want to contribute? That's cool too, fork a copy, make you changes and su
 Requirements & Installation
 ---------------------------
 
-1. Run 'composer install' or 'composer update'. This will install:
+1. Run 'composer install'This will install:
     - <a href="http://www.slimframework.com/" target="_blank">Slim PHP Framework</a>
     - <a href="http://twig.sensiolabs.org/" target="_blank">Twig PHP Templating Engine</a>
     - <a href="https://github.com/claviska/SimpleImage" target="_blank">SimpleImage PHP Class</a>
