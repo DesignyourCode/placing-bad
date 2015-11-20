@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<div class="left half">
+        <h2>How to use:</h2>
+		<p><strong>If you know the width and height:</strong></p>
+		<pre>
+			<code>{{ currenturl }}200/200
+{{ currenturl }}width/height</code>
+		</pre>
+
+		<h3>If you want a square, just specify the width:</h3>
+		<pre>
+			<code>{{ currenturl }}200
+{{ currenturl }}width</code>
+		</pre>
+
+        <p><strong>Want a certain character...use any below</strong></p>
+        <p>Remember if you choose a character, you need to specify both height and width</p>
+        <pre>
+            <code>{% for person in people %}
+{{ currenturl }}width/height/<strong>{{ person }}</strong>
+{% endfor %}</code>
+        </pre>
+
+        <img src="{{ currenturl }}600/380/gus" />
+    </div>
+
+    <div class="right half">
+    	<img src="{{ currenturl }}500/380" />
+        <img src="{{ currenturl }}500/420/walter" />
+        <img src="{{ currenturl }}500/200/skyler" />
+    </div>
+{% endblock %}

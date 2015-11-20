@@ -26,7 +26,7 @@
 
         $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-        $template = $twig->loadTemplate('homeTemplate.php');
+        $template = $twig->loadTemplate('views/home.html.twig');
         echo $template->render(array(
             'currenturl' => $currentURL,
             'people' => $people
@@ -39,19 +39,22 @@
         $app->response()->redirect("/$width/$width", 303);
     });
 
-
     $app->get('/:width/:height', function($width, $height) use($app) {
         if($width > 1500 || $height > 1500) {
             echo "Woah now...do you really want to serve an image that size?";
             die();
         }
-
         serve($width, $height, '');
     });
 
     $app->get('/:width/:height/:person', function($width, $height, $person) use($app) {
-
         serve($width, $height, $person);
+    });
+
+    // Attribution
+    $app->get('/attribution', function() use($app, $twig) {
+        $template = $twig->loadTemplate('views/attribution.html.twig');
+        echo $template->render(array());
     });
 
 $app->run();

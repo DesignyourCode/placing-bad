@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        {% block head %}
+            <title>{% block title %}Placing Bad{% endblock %}</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+            <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
+        {% endblock %}
+	</head>
+
+	<body>
+        <header>
+            <div class="content">
+    			<h1>Placing Bad</h1>
+                <div class="narrow">
+                    <p>This is a placeholder generator for developers to add to their sites, to help with testing. But what developer doesn't like Breaking Bad.</p>
+                    <p class="quote">&ldquo;I am the one who...adds placeholders to my site&rdquo;</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+		</main>
+
+        <footer>
+            <p>Built by<br />
+                <a href="http://designyourcode.io" target="_blank"><img class="logo" src="assets/img/designyourcode.png" alt="designyourcode.io"></a>
+            </p>
+
+            <p><strong>With support from:</strong><br />
+                <a href="https://github.com/simonstaton" target="_blank">simonstaton</a> | <a href="https://github.com/garyfagan1987" target="_blank">garyfagan1987</a> | <a href="https://github.com/zsturgess" target="_blank">zsturgess</a>
+            </p>
+
+            <p><a href="https://github.com/DesignyourCode/placing-bad">Visit the project on Github<br /><i class="fa fa-github"></i></a></p>
+        </footer>
+
+	</body>
+</html>
