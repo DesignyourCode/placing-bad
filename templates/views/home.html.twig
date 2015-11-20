@@ -1,36 +1,79 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-	<div class="left half">
-        <h2>How to use:</h2>
-		<p><strong>If you know the width and height:</strong></p>
-		<pre>
-			<code>{{ currenturl }}200/200
+
+    <div class="content">
+        <div class="left half">
+            <h2>Use it in your project:</h2>
+            <p><strong>If you know the width and height:</strong></p>
+            <pre>
+                <code>{{ currenturl }}200/200
 {{ currenturl }}width/height</code>
-		</pre>
+            </pre>
 
-		<h3>If you want a square, just specify the width:</h3>
-		<pre>
-			<code>{{ currenturl }}200
+            <h3>If you want a square, just specify the width:</h3>
+            <pre>
+                <code>{{ currenturl }}200
 {{ currenturl }}width</code>
-		</pre>
+            </pre>
+        </div>
 
-        <p><strong>Want a certain character...use any below</strong></p>
-        <p>Remember if you choose a character, you need to specify both height and width</p>
-        <pre>
-            <code>{% for person in people %}
+        <div class="right half">
+            <h2>Want a certain character...use any below</h2>
+            <p>Remember if you choose a character, you need to specify both height and width</p>
+            <pre>
+                <code>{% for person in people %}
 {{ currenturl }}width/height/<strong>{{ person }}</strong>
 {% endfor %}</code>
-        </pre>
+            </pre>
 
-        <p><a href="/attribution" class="inline-link dark"><i class="fa fa-link"></i> Image attributions</a></p>
-
-        <img src="{{ currenturl }}600/380/gus" />
+            <p><a href="/attribution" class="inline-link dark"><i class="fa fa-link"></i> Image attributions</a></p>
+        </div>
     </div>
 
-    <div class="right half">
-    	<img src="{{ currenturl }}500/380" />
-        <img src="{{ currenturl }}500/420/walter" />
-        <img src="{{ currenturl }}500/200/skyler" />
+    <div class="sublime">
+        <div class="content">
+            <div class="left half">
+                <h2>Install this for sublime</h2>
+                <p><img src="assets/img/sublime-text-logo.png" alt="Sublime Text" /></p>
+                <ol>
+                    <li>Download the file below</li>
+                    <li>Extract it</li>
+                    <li>
+                        <strong>Save this file in:</strong><br />
+                        Home Directory > Library > Application Support > Sublime Text 3 > Packages > User
+                    </li>
+                </ol>
+                <p><a href="assets/download/placingbad.sublime-snippet.zip" class="btn light"><i class="fa fa-download"></i> Sublime Snippet</a></p>
+            </div>
+
+            <div class="right half">
+                <h3>Alternative method:</h3>
+                <p><img src="assets/img/new-snippet.jpg" alt="New sublime snippet"></p>
+                <pre><code>&lt;snippet&gt;
+    &lt;content&gt;&lt;![CDATA[
+        &lt;img src=&quot;http://placingbad.com/${1:200}/${2:200}&quot; /&gt;
+    ]]&gt;&lt;/content&gt;
+    &lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;
+    &lt;tabTrigger&gt;placebad&lt;/tabTrigger&gt;
+    &lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;
+    &lt;!-- &lt;scope&gt;source.python&lt;/scope&gt; --&gt;
+&lt;/snippet&gt;
+                </code></pre>
+            </div>
+        </div>
     </div>
+
+    <div class="gallery">
+        <div class="content">
+            <h2>Examples</h2>
+            <img src="{{ currenturl }}650/380/gus" />
+            <img src="{{ currenturl }}444/380" />
+
+            <img src="{{ currenturl }}360/420/walter" />
+            <img src="{{ currenturl }}460/420/skyler" />
+            <img src="{{ currenturl }}270/420/hank" />
+        </div>
+    </div>
+
 {% endblock %}

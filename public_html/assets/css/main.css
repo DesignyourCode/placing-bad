@@ -34,8 +34,11 @@ p, li {
     line-height: 18px;
 }
 
-.inline-link.dark {
-    color: #555555;
+ol li, ul li {
+    margin-bottom: 6px;
+}
+
+.inline-link {
     text-decoration: none;
     -webkit-transition: all .3s ease-in-out;
        -moz-transition: all .3s ease-in-out;
@@ -43,12 +46,42 @@ p, li {
          -o-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
 }
+.inline-link.dark {
+    color: #555555;
+}
+.inline-link.light {
+    color: #ffffff;
+}
+
 .inline-link.large {
     font-size: 20px;
     line-height: 30px;
 }
 .inline-link.dark:hover {
     color: #000000;
+}
+.inline-link.light:hover {
+    color: #f6f6f6;
+}
+
+.btn {
+    background: #CEDCBE;
+    color: #026635;
+    font-size: 18px;
+    display: inline-block;
+    padding: 12px 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin: 10px 0 0 20px;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+}
+.btn:hover {
+    background: #026635;
+    color: #ffffff;
 }
 
 header {
@@ -75,6 +108,14 @@ main {
     background: #ffffff;
     padding: 40px 0;
 }
+
+/* Layout */
+.columns {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+}
 .left {
     float: left;
 }
@@ -94,6 +135,17 @@ main {
     margin: 0 auto;
     max-width: 1100px;
     width: 90%;
+}
+
+.sublime {
+    background: #4a4a4a;
+    color: #ffffff;
+    clear: both;
+    display: inline-block;
+    margin: 30px 0;
+    overflow: hidden;
+    padding: 30px 0;
+    width: 100%;
 }
 
 pre code {
