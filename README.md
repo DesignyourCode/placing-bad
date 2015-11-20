@@ -1,6 +1,8 @@
 Placing Bad - Image Placeholder
 ===============================
 
+![alt tag](https://github.com/DesignyourCode/placing-bad/blob/master/public_html/assets/img/bg.jpg?raw=true)
+
 Who wouldn't want a Breaking Bad placeholder generator...and as developers and huge Breaking Bad fans...we decided to build one. After discussions with a couple of other devs, I started to put together a site to do it.
 With support and input from some of the other guys (listed in the footer of the site). This is the end result.
 
