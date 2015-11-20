@@ -7,14 +7,14 @@
             <h2>Use it in your project:</h2>
             <p><strong>If you know the width and height:</strong></p>
             <pre>
-                <code>{{ currenturl }}200/200
-{{ currenturl }}width/height</code>
+                <code>&lt;img src=&quot;{{ currenturl }}200/200&quot; /&gt;
+&lt;img src=&quot;{{ currenturl }}width/height&quot; /&gt;</code>
             </pre>
 
             <h3>If you want a square, just specify the width:</h3>
             <pre>
-                <code>{{ currenturl }}200
-{{ currenturl }}width</code>
+                <code>&lt;img src=&quot;{{ currenturl }}200&quot; /&gt;
+&lt;img src=&quot;{{ currenturl }}width&quot; /&gt;</code>
             </pre>
         </div>
 
@@ -23,7 +23,7 @@
             <p>Remember if you choose a character, you need to specify both height and width</p>
             <pre>
                 <code>{% for person in people %}
-{{ currenturl }}width/height/<strong>{{ person }}</strong>
+&lt;img src=&quot;{{ currenturl }}width/height/<strong>{{ person }}</strong>&quot; /&gt;
 {% endfor %}</code>
             </pre>
 
