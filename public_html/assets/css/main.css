@@ -34,6 +34,23 @@ p, li {
     line-height: 18px;
 }
 
+.inline-link.dark {
+    color: #555555;
+    text-decoration: none;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+}
+.inline-link.large {
+    font-size: 20px;
+    line-height: 30px;
+}
+.inline-link.dark:hover {
+    color: #000000;
+}
+
 header {
     background: url("../img/bg.jpg") no-repeat scroll 0 center #50879B;
     background-size: cover;
