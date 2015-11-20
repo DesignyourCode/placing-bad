@@ -39,13 +39,13 @@ function serve($width, $height, $person)
 
     if($img->get_width()/$img->get_height() >= $width/$height){
         $img->fit_to_height($height);
-        $centre = round($width / 2);
+        $centre = round($img->get_width() / 2);
         $x1 = $centre - ($width / 2);
         $x2 = $centre + ($width / 2);
         $img->crop($x1, 0, $x2, $height);
     } else {
         $img->fit_to_width($width);
-        $centre = round($height / 2);
+        $centre = round($img->get_height() / 2);
         $y1 = $centre - ($height / 2);
         $y2 = $centre + ($height / 2);
         $img->crop(0, $y1, $width, $y2);
