@@ -100,9 +100,15 @@ header {
     padding: 20px 0 210px;
     text-align: center;
 }
+
+header h1 {
+    text-shadow: 0 0 4px rgba(0,0,0,0.3);
+}
+
 header p {
     font-size: 18px;
     line-height: 22px;
+    text-shadow: 0 0 4px rgba(0,0,0,0.3);
 }
 
 .quote {
@@ -186,7 +192,16 @@ footer p, footer a {
     color: #aaaaaa;
     line-height: 30px;
     text-decoration: none;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
 }
+footer a:hover {
+    color: #000000;
+}
+
 footer .fa {
     font-size: 30px;
 }
