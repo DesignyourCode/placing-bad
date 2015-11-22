@@ -98,11 +98,26 @@ ol li, ul li {
 }
 
 header {
-    background: url("../img/bg.jpg") no-repeat scroll right center #50879B;
-    background-size: cover;
+    clear: both;
     color: #ffffff;
-    padding: 20px 0 210px;
+    min-height: 560px;
+    overflow: hidden;
+    padding: 20px 0;
+    position: relative;
     text-align: center;
+}
+header .header-img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 0;
+    height: auto;
+    min-height: 560px;
+    width: 100%;
+    min-width: 818px;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
 }
 
 header h1 {
@@ -151,9 +166,11 @@ main {
 }
 
 .content {
+    position: relative;
     margin: 0 auto;
     max-width: 1100px;
     width: 90%;
+    z-index: 1;
 }
 
 .sublime {
@@ -221,7 +238,7 @@ footer .logo {
 /* Responsive */
 @media only screen and (min-width: 1900px) {
     header {
-        min-height: 600px;
+        min-height: 800px;
     }
 }
 
