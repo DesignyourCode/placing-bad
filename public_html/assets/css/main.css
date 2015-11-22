@@ -287,6 +287,10 @@ footer .logo {
 }
 
 @media only screen and (max-width: 500px) {
+    h1 {
+        font-size: 60px;
+    }
+
     .gallery img {
         margin-bottom: 6px;
         height: auto;
