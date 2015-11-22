@@ -1,1 +1,7 @@
 /vendor/*
+.bash_history
+.bashrc
+.composer/*
+.htaccess
+.ssh/*
+composer.phar
