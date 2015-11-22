@@ -1,7 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 	<head>
         {% block head %}
+            <meta charset="utf-8" />
+            <meta name="description" content="Placing Bad - image placeholder generator" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+
             <title>{% block title %}Placing Bad{% endblock %}</title>
 
             <link rel="apple-touch-icon" sizes="57x57" href="assets/img/favicons/apple-touch-icon-57x57.png">
@@ -27,8 +31,11 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
             <link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
             <script type="text/javascript" src="assets/lib/vendor/highlight.min.js"></script>
-            <script>hljs.initHighlightingOnLoad();</script>
+            <script>
+                hljs.initHighlightingOnLoad();
+            </script>
         {% endblock %}
 	</head>
 
@@ -49,7 +56,7 @@
 
         <footer>
             <p>Built by<br />
-                <a href="http://designyourcode.io" target="_blank"  onclick="ga('send', 'event', 'External Link', 'DesignyourCode Site');"><img class="logo" src="assets/img/designyourcode.png" alt="designyourcode.io"></a>
+                <a href="http://designyourcode.io" target="_blank" onclick="ga('send', 'event', 'External Link', 'DesignyourCode Site');"><img class="logo" src="assets/img/designyourcode.png" alt="designyourcode.io"></a>
             </p>
 
             <p><strong>With support from:</strong><br />
