@@ -35,16 +35,7 @@
     });
 
     $app->get('/:width', function($width) use($app) {
-        //just redirect them to the width & height route
         $app->response()->redirect("/$width/$width", 303);
-    });
-
-    $app->get('/:width/:height', function($width, $height) use($app) {
-        if($width > 1500 || $height > 1500) {
-            echo "Woah now...do you really want to serve an image that size?";
-            die();
-        }
-        serve($width, $height, '');
     });
 
     $app->get('/:width/:height/:person', function($width, $height, $person) use($app) {
