@@ -43,6 +43,10 @@
     });
 
     $app->get('/:width/:height/:person', function($width, $height, $person) use($app) {
+        if($width > 3000 || $height > 3000) {
+            echo "Sorry but this size is not available. Max is 3000 x 3000.";
+            die();
+        }
         serve($width, $height, $person);
     });
 
