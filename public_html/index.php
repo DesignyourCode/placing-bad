@@ -34,6 +34,10 @@
 
     });
 
+    $app->get('/:width/:height', function($width, $height) use($app) {
+        serve($width, $height, '');
+    });
+
     $app->get('/:width', function($width) use($app) {
         $app->response()->redirect("/$width/$width", 303);
     });
