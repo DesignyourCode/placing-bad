@@ -2,38 +2,56 @@
 
 function getBestImage($width, $height, $person)
 {
-    if ( is_null($person) ) {
+    if ( is_null($person) || $person == 'all') {
         $dir = 'img/';
     } else {
         $dir = 'img/' . $person . '/';
     }
 
-    $files = scandir($dir);
-    $best = PHP_INT_MAX;
-    $match = $files[2];
-    $requestedAspect = $width/$height;
+    if($person == 'all'){
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
+    } else {
+        $files = scandir($dir);
+    }
 
-    $possibles = array();
-    $maximumPossibilities = 10; // Change this to increase randomisation of images
+    $requestedAspect = $width/$height;
+    $allowed_file_types = array("jpg", "png");
+    $files_with_difference = array();
 
     foreach($files as $file) {
-        if (is_file($dir . $file) && $file !== '.DS_Store') {
-            $info = getimagesize($dir . $file);
-            $aspect = $info[0]/$info[1];
-            $diff = $requestedAspect - $aspect;
-            if(abs($diff)<$best){
-                if(count($possibles) > $maximumPossibilities){
-                    array_shift($possibles);
-                }
-                $possibles[] = $file;
-                $best = abs($diff);
-            }
+        if(in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $allowed_file_types)){
+            if (strpos($file, $dir) === false) $file = $dir . $file;
+            if (is_file($file)) {
+                $aspect = getimagesize($file)[0]/getimagesize($file)[1];
+                $files_with_difference[] = array(
+                    'file' => $file,
+                    'aspect_difference' => abs($requestedAspect - $aspect)
+                );
+           }
         }
     }
 
-    $match = $possibles[array_rand($possibles)];
+    function sort_array($a, $b){
+        if ($a['aspect_difference'] == $b['aspect_difference']) {
+            return 0;
+        }
+        return ($a['aspect_difference'] < $b['aspect_difference']) ? -1 : 1;
+    }
+    usort($files_with_difference, 'sort_array');
 
-    return $dir . $match;
+    $possibilities = array();
+    $randomisation_range = 4;
+    $randomised = 0;
+    foreach($files_with_difference as $file){
+        $possibilities[] = $file['file'];
+        $randomised++;
+        if($randomised == $randomisation_range) break;
+    }
+
+    $match = $possibilities[array_rand($possibilities)];
+
+    return $match;
+
 }
 
 function applyFilters($img)
