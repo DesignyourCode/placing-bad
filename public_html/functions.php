@@ -13,17 +13,25 @@ function getBestImage($width, $height, $person)
     $match = $files[2];
     $requestedAspect = $width/$height;
 
+    $possibles = array();
+    $maximumPossibilities = 10; // Change this to increase randomisation of images
+
     foreach($files as $file) {
-        if ( is_file($dir . $file) && $file !== '.DS_Store') {
+        if (is_file($dir . $file) && $file !== '.DS_Store') {
             $info = getimagesize($dir . $file);
             $aspect = $info[0]/$info[1];
             $diff = $requestedAspect - $aspect;
             if(abs($diff)<$best){
+                if(count($possibles) > $maximumPossibilities){
+                    array_shift($possibles);
+                }
+                $possibles[] = $file;
                 $best = abs($diff);
-                $match = $file;
             }
         }
     }
+
+    $match = $possibles[array_rand($possibles)];
 
     return $dir . $match;
 }
