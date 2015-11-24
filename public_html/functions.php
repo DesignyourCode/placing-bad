@@ -1,31 +1,139 @@
 <?php
 
+function handle404()
+{
+    $app = \Slim\Slim::getInstance();
+    $app->response->redirect('/not-found', 303);
+}
+
 function getBestImage($width, $height, $person)
 {
-    if ( is_null($person) ) {
-        $dir = 'img/';
+
+    $app = \Slim\Slim::getInstance();
+
+    if ( is_null($person) || $person == 'all') {
+        $dir = $_SERVER["DOCUMENT_ROOT"].'/img/';
     } else {
-        $dir = 'img/' . $person . '/';
+        $dir = $_SERVER["DOCUMENT_ROOT"].'/img/' . $person . '/';
     }
 
-    $files = scandir($dir);
-    $best = PHP_INT_MAX;
-    $match = $files[2];
+    if(!is_dir($dir)) handle404();
+
+    if($person == 'all'){
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
+    } else {
+        $files = scandir($dir);
+    }
+
     $requestedAspect = $width/$height;
+    $allowed_file_types = array("jpg", "png");
+    $files_with_difference = array();
 
     foreach($files as $file) {
-        if ( is_file($dir . $file) && $file !== '.DS_Store') {
-            $info = getimagesize($dir . $file);
-            $aspect = $info[0]/$info[1];
-            $diff = $requestedAspect - $aspect;
-            if(abs($diff)<$best){
-                $best = abs($diff);
-                $match = $file;
-            }
+        if(in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $allowed_file_types)){
+            if (strpos($file, $dir) === false) $file = $dir . $file;
+            if (is_file($file)) {
+                $aspect = getimagesize($file)[0]/getimagesize($file)[1];
+                $files_with_difference[] = array(
+                    'file' => $file,
+                    'aspect_difference' => abs($requestedAspect - $aspect)
+                );
+           }
         }
     }
 
-    return $dir . $match;
+    function sort_array($a, $b){
+        if ($a['aspect_difference'] == $b['aspect_difference']) {
+            return 0;
+        }
+        return ($a['aspect_difference'] < $b['aspect_difference']) ? -1 : 1;
+    }
+    usort($files_with_difference, 'sort_array');
+
+    $possibilities = array();
+    $random = $app->request()->params('random');
+    $randomisation_range = (isset($random) ? 5 : 1);
+    $randomised = 0;
+    foreach($files_with_difference as $file){
+        $possibilities[] = $file['file'];
+        $randomised++;
+        if($randomised == $randomisation_range) break;
+    }
+
+    $match = $possibilities[array_rand($possibilities)];
+
+    if(!is_file($match)) handle404();
+
+    return $match;
+
+}
+
+function applyFilters($img)
+{
+
+    $app = \Slim\Slim::getInstance();
+
+    // Default filter value if no parameter value given
+    $defaults = array(
+        'desaturate' => 100,
+        'blur' => 10,
+        'brightness' => 50,
+        'color' => 'FF0000',
+        'pixelate' => 8
+    );
+
+    $desaturate = $app->request()->params('desaturate');
+    if(isset($desaturate)) {
+        if(empty($desaturate)){
+            $img->desaturate($defaults['desaturate']);
+        } else {
+            $img->desaturate($desaturate);
+        }
+    }
+
+    $blur = $app->request()->params('blur');
+    if(isset($blur)) {
+        if(empty($blur)){
+            $img->blur('gaussian', $defaults['blur']);
+        } else {
+            $img->blur('gaussian', $blur);
+        }
+    }
+
+    $brightness = $app->request()->params('brightness');
+    if(isset($brightness)) {
+        if(empty($brightness)){
+            $img->brightness($defaults['brightness']);
+        } else {
+            $img->brightness($brightness);
+        }
+    }
+
+    $color = $app->request()->params('color');
+    if(isset($color)) {
+        $img->desaturate();
+        if(empty($color)){
+            $img->colorize($defaults['color'], null);
+        } else {
+            $img->colorize('#'.$color, null);
+        }
+    }
+
+    $pixelate = $app->request()->params('pixelate');
+    if(isset($pixelate)) {
+        if(empty($pixelate)){
+            $img->pixelate($defaults['pixelate']);
+        } else {
+            $img->pixelate($pixelate);
+        }
+    }
+
+    $sepia = $app->request()->params('sepia');
+    if(isset($sepia)) {
+        $img->sepia();
+    }
+    
+    return $img;
 }
 
 function serve($width, $height, $person)
@@ -50,6 +158,8 @@ function serve($width, $height, $person)
         $y2 = $centre + ($height / 2);
         $img->crop(0, $y1, $width, $y2);
     }
+
+    $img = applyFilters($img);
 
     $img->output();
 }
