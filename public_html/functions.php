@@ -46,7 +46,7 @@ function applyFilters($img)
         'desaturate' => 100,
         'blur' => 10,
         'brightness' => 50,
-        'color' => '#FF0000',
+        'color' => 'FF0000',
         'pixelate' => 8
     );
 
@@ -126,7 +126,7 @@ function serve($width, $height, $person)
         $y2 = $centre + ($height / 2);
         $img->crop(0, $y1, $width, $y2);
     }
-    
+
     $img = applyFilters($img);
 
     $img->output();
