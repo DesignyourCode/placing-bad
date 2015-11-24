@@ -3,7 +3,7 @@
 function handle404()
 {
     $app = \Slim\Slim::getInstance();
-    $app->response->redirect('/notfound', 303);
+    $app->response->redirect('/not-found', 303);
 }
 
 function getBestImage($width, $height, $person)
@@ -12,14 +12,12 @@ function getBestImage($width, $height, $person)
     $app = \Slim\Slim::getInstance();
 
     if ( is_null($person) || $person == 'all') {
-        $dir = 'img/';
+        $dir = $_SERVER["DOCUMENT_ROOT"].'/img/';
     } else {
-        $dir = 'img/' . $person . '/';
+        $dir = $_SERVER["DOCUMENT_ROOT"].'/img/' . $person . '/';
     }
 
-    if(!is_file($dir)) {
-        handle404();
-    }
+    if(!is_dir($dir)) handle404();
 
     if($person == 'all'){
         $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
