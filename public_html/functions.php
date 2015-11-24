@@ -2,6 +2,9 @@
 
 function getBestImage($width, $height, $person)
 {
+
+    $app = \Slim\Slim::getInstance();
+
     if ( is_null($person) || $person == 'all') {
         $dir = 'img/';
     } else {
@@ -40,7 +43,8 @@ function getBestImage($width, $height, $person)
     usort($files_with_difference, 'sort_array');
 
     $possibilities = array();
-    $randomisation_range = 4;
+    $random = $app->request()->params('random');
+    $randomisation_range = (isset($random) ? 5 : 1);
     $randomised = 0;
     foreach($files_with_difference as $file){
         $possibilities[] = $file['file'];
