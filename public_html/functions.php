@@ -1,5 +1,11 @@
 <?php
 
+function handle404()
+{
+    $app = \Slim\Slim::getInstance();
+    $app->response->redirect('/notfound', 303);
+}
+
 function getBestImage($width, $height, $person)
 {
 
@@ -9,6 +15,10 @@ function getBestImage($width, $height, $person)
         $dir = 'img/';
     } else {
         $dir = 'img/' . $person . '/';
+    }
+
+    if(!is_file($dir)) {
+        handle404();
     }
 
     if($person == 'all'){
@@ -53,6 +63,8 @@ function getBestImage($width, $height, $person)
     }
 
     $match = $possibilities[array_rand($possibilities)];
+
+    if(!is_file($match)) handle404();
 
     return $match;
 
