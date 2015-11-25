@@ -195,6 +195,11 @@ main {
     overflow: hidden;
     width: 100%;
 }
+.narrow {
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+}
 .left {
     float: left;
 }
