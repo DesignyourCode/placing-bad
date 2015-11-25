@@ -33,7 +33,8 @@ function getBestImage($width, $height, $person)
         if(in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $allowed_file_types)){
             if (strpos($file, $dir) === false) $file = $dir . $file;
             if (is_file($file)) {
-                $aspect = getimagesize($file)[0]/getimagesize($file)[1];
+                $dimensions = getimagesize($file);
+                $aspect = $dimensions[0] / $dimensions[1];
                 $files_with_difference[] = array(
                     'file' => $file,
                     'aspect_difference' => abs($requestedAspect - $aspect)
