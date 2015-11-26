@@ -25,15 +25,19 @@
             </div>
 
             <div class="right half">
-                <h2>Choose a character</h2>
-                <p>Remember if you choose a character, you need to specify both height and width</p>
+                <h2>Available Categories</h2>
+                <p>Categories include characters, locations, blue meth and some hidden gems for the die hard Breaking Bad fans.</p>
+                <p>For example: 'rock' shows a picture of a very angry Hank. 'Mineral' shows some of the minerals from Hanks collection.</p>
+
+                <p class="important"><i class="fa fa-exclamation-triangle"></i> Remember when using the below options to specify both height and width</p>
 
                 <pre>
-<code class="language-html">{% for person in people %}{% if person != 'mineral' %}&lt;img src=&quot;{{ currenturl }}width/height/<strong>{{ person }}</strong>&quot; /&gt;
-{% endif %}{% endfor %}</code></pre>
+<code class="language-html">{% for person in people %}{% if person != 'mineral' or person != 'meth' %}&lt;img src=&quot;{{ currenturl }}width/height/<strong>{{ person }}</strong>&quot; /&gt;
+{% endif %}{% endfor %}
 
-                <pre><code class="language-html">&lt;img src=&quot;{{ currenturl }}width/height/<strong>mineral</strong>&quot; /&gt;
+&lt;!--'All' will let you get any image from any category--&gt;
 &lt;img src=&quot;{{ currenturl }}width/height/<strong>all</strong>&quot; /&gt;</code></pre>
+
 
                 <p><a href="/attribution" class="inline-link dark" onclick="ga('send', 'event', 'Internal Link', 'Image Attributions');"><i class="fa fa-link"></i> Image attributions</a></p>
             </div>
