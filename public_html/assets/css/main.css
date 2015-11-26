@@ -252,6 +252,12 @@ main {
     width: 100%;
 }
 
+.example-gallery img {
+    float: left;
+    margin: 0 1% 1% 0;
+    width: 48%;
+}
+
 footer {
     background: #f7f7f7;
     display: inline-block;
