@@ -150,7 +150,7 @@ function serve($width, $height, $person)
     $response = $app->response();
     $response['Content-Type'] = 'image/jpeg';
 
-    $cacheKey = getCacheKey($width, $height, $person);
+    $cacheKey = getCacheKey($width, $height, $person, $request);
     if ($canRequestBeCached && isFileCached($cacheKey)) {
         $img = new SimpleImage(getCacheFile($cacheKey));
     } else {
@@ -169,12 +169,12 @@ function serve($width, $height, $person)
             $img->crop(0, $y1, $width, $y2);
         }
 
-        if ($canRequestBeCached) {
-            cacheImage($cacheKey, $img);
-        }
+        $img = applyFilters($img);
     }
 
-    $img = applyFilters($img);
+    if ($canRequestBeCached) {
+        cacheImage($cacheKey, $img);
+    }
 
     $img->output();
 }
@@ -192,9 +192,9 @@ function canRequestBeCached(Request $request, $person)
     return true;
 }
 
-function getCacheKey($width, $height, $person)
+function getCacheKey($width, $height, $person, Request $request)
 {
-    return "$width-$height-$person";
+    return "$width-$height-$person-" . md5(serialize($request->params()));
 }
 
 function isFileCached($cacheKey)
