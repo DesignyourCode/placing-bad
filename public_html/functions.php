@@ -1,6 +1,7 @@
 <?php
 
 use abeautifulsite\SimpleImage;
+use Slim\Http\Request;
 
 function handle404()
 {
@@ -143,11 +144,14 @@ function serve($width, $height, $person)
 {
     $app = \Slim\Slim::getInstance();
 
+    $request = $app->request();
+    $canRequestBeCached = canRequestBeCached($request, $person);
+
     $response = $app->response();
     $response['Content-Type'] = 'image/jpeg';
 
     $cacheKey = getCacheKey($width, $height, $person);
-    if (isFileCached($cacheKey)) {
+    if ($canRequestBeCached && isFileCached($cacheKey)) {
         $img = new SimpleImage(getCacheFile($cacheKey));
     } else {
         $img = new SimpleImage(getBestImage($width, $height, $person));
@@ -164,12 +168,28 @@ function serve($width, $height, $person)
             $y2 = $centre + ($height / 2);
             $img->crop(0, $y1, $width, $y2);
         }
-        cacheImage($cacheKey, $img);
+
+        if ($canRequestBeCached) {
+            cacheImage($cacheKey, $img);
+        }
     }
 
     $img = applyFilters($img);
 
     $img->output();
+}
+
+function canRequestBeCached(Request $request, $person)
+{
+    if (!$person || $person === 'all') {
+        return false;
+    }
+
+    if ($request->params('random') !== null) {
+        return false;
+    }
+
+    return true;
 }
 
 function getCacheKey($width, $height, $person)
