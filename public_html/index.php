@@ -24,7 +24,7 @@
           }
         }
 
-        $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . '://' . $_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
         $template = $twig->loadTemplate('views/home.html.twig');
         echo $template->render(array(
