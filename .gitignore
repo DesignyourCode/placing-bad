@@ -5,3 +5,4 @@
 .htaccess
 .ssh/*
 composer.phar
+/public_html/cache
