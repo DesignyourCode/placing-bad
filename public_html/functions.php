@@ -1,5 +1,7 @@
 <?php
 
+use abeautifulsite\SimpleImage;
+
 function handle404()
 {
     $app = \Slim\Slim::getInstance();
@@ -143,23 +145,51 @@ function serve($width, $height, $person)
     $response = $app->response();
     $response['Content-Type'] = 'image/jpeg';
 
-    $img = new abeautifulsite\SimpleImage( getBestImage($width, $height, $person) );
-
-    if($img->get_width()/$img->get_height() >= $width/$height){
-        $img->fit_to_height($height);
-        $centre = round($img->get_width() / 2);
-        $x1 = $centre - ($width / 2);
-        $x2 = $centre + ($width / 2);
-        $img->crop($x1, 0, $x2, $height);
+    $cacheKey = getCacheKey($width, $height, $person);
+    if (isFileCached($cacheKey)) {
+        $img = new SimpleImage(getCacheFile($cacheKey));
     } else {
-        $img->fit_to_width($width);
-        $centre = round($img->get_height() / 2);
-        $y1 = $centre - ($height / 2);
-        $y2 = $centre + ($height / 2);
-        $img->crop(0, $y1, $width, $y2);
+        $img = new SimpleImage(getBestImage($width, $height, $person));
+        if($img->get_width()/$img->get_height() >= $width/$height){
+            $img->fit_to_height($height);
+            $centre = round($img->get_width() / 2);
+            $x1 = $centre - ($width / 2);
+            $x2 = $centre + ($width / 2);
+            $img->crop($x1, 0, $x2, $height);
+        } else {
+            $img->fit_to_width($width);
+            $centre = round($img->get_height() / 2);
+            $y1 = $centre - ($height / 2);
+            $y2 = $centre + ($height / 2);
+            $img->crop(0, $y1, $width, $y2);
+        }
+        cacheImage($cacheKey, $img);
     }
 
     $img = applyFilters($img);
 
     $img->output();
+}
+
+function getCacheKey($width, $height, $person)
+{
+    return "$width-$height-$person";
+}
+
+function isFileCached($cacheKey)
+{
+    return file_exists(getCacheFile($cacheKey));
+}
+
+function getCacheFile($cacheKey)
+{
+    return __DIR__ . '/cache/' . $cacheKey;
+}
+
+function cacheImage($cacheKey, SimpleImage $image)
+{
+    if (!is_dir('cache')) {
+        mkdir('cache');
+    }
+    $image->save(getCacheFile($cacheKey));
 }
