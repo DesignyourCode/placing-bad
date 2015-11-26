@@ -66,4 +66,10 @@
         echo $template->render(array());
     });
 
+    // 404
+    $app->notFound(function () use ($app, $twig) {
+        $template = $twig->loadTemplate('views/404.html.twig');
+        echo $template->render(array());
+    });
+
 $app->run();

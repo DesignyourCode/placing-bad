@@ -3,12 +3,6 @@
 use abeautifulsite\SimpleImage;
 use Slim\Http\Request;
 
-function handle404()
-{
-    $app = \Slim\Slim::getInstance();
-    $app->response->redirect('/not-found', 303);
-}
-
 function getBestImage($width, $height, $person)
 {
 
@@ -136,7 +130,7 @@ function applyFilters($img)
     if(isset($sepia)) {
         $img->sepia();
     }
-    
+
     return $img;
 }
 

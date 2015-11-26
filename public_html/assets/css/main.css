@@ -25,6 +25,10 @@ h1 {
     line-height: 90px;
     text-transform: uppercase;
 }
+.page-not-found h1 {
+    margin: 0 0 20px;
+}
+
 h2 {
     font-size: 24px;
     line-height: 30px;
@@ -59,8 +63,16 @@ p {
     margin-bottom: 10px;
 }
 
+ol {
+    margin: 0 0 20px 0;
+    padding: 0 0 0 20px;
+}
 ol li, ul li {
     margin-bottom: 6px;
+}
+
+.links {
+    margin-top: 20px;
 }
 
 /* Sharing links */
@@ -130,14 +142,13 @@ ol li, ul li {
 }
 
 .btn {
-    background: #CEDCBE;
-    color: #026635;
+    background: #333333;
+    color: #ffffff;
     font-size: 18px;
     display: inline-block;
     padding: 12px 20px;
     text-transform: uppercase;
     text-decoration: none;
-    margin: 10px 0 0 20px;
     -webkit-transition: all .3s ease-in-out;
        -moz-transition: all .3s ease-in-out;
         -ms-transition: all .3s ease-in-out;
@@ -145,7 +156,7 @@ ol li, ul li {
             transition: all .3s ease-in-out;
 }
 .btn:hover {
-    background: #026635;
+    background: #111111;
     color: #ffffff;
 }
 
