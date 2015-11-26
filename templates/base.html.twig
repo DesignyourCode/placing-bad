@@ -36,41 +36,45 @@
             <![endif]-->
 
             <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-            <script type="text/javascript" src="assets/lib/vendor/highlight.min.js"></script>
-            <script>
-                hljs.initHighlightingOnLoad();
-            </script>
+            <script type="text/javascript" src="assets/lib/vendor/prism.min.js"></script>
         {% endblock %}
 	</head>
 
 	<body>
-        <header>
-            <img src="assets/img/bg.jpg" class="header-img" />
+        {% block header_outer %}
+            <header>
+                {% block header %}
+                    <img src="assets/img/bg.jpg" class="header-img" />
 
-            <div class="content">
-    			<h1>Placing Bad</h1>
-                <div class="narrow">
-                    <p>This is a placeholder generator for developers to add to their sites, to help with testing. But what developer doesn't like Breaking Bad.</p>
-                    <p class="quote">&ldquo;I am the one who...adds placeholders to my site&rdquo;</p>
-                </div>
-            </div>
-        </header>
+                    <div class="content">
+                        <h1>Placing Bad</h1>
+                        <div class="narrow">
+                            <p>This is a placeholder generator for developers to add to their sites, to help with testing. But what developer doesn't like Breaking Bad.</p>
+                            <p class="quote">&ldquo;I am the one who...adds placeholders to my site&rdquo;</p>
+                        </div>
+                    </div>
+                {% endblock %}
+            </header>
+        {% endblock %}
 
         <main>
             {% block content %}{% endblock %}
 		</main>
 
-        <footer>
-            <p>Built by<br />
-                <a href="http://designyourcode.io" target="_blank" onclick="ga('send', 'event', 'External Link', 'DesignyourCode Site');"><img class="logo" src="assets/img/designyourcode.png" alt="designyourcode.io"></a>
-            </p>
+        {% block footer %}
+            <footer>
+                <p>Built by<br />
+                    <a href="http://designyourcode.io" target="_blank" onclick="ga('send', 'event', 'External Link', 'DesignyourCode Site');"><img class="logo" src="assets/img/designyourcode.png" alt="designyourcode.io"></a>
+                </p>
+                <p><a href="https://github.com/DesignyourCode/placing-bad" onclick="ga('send', 'event', 'External Link', 'Placing Bad's Github');">Visit the project on Github<br /><i class="fa fa-github"></i></a></p>
 
-            <p><strong>With support from:</strong><br />
-                <a href="https://github.com/simonstaton" target="_blank" onclick="ga('send', 'event', 'External Link', 'Simon's Github');">simonstaton</a> | <a href="https://github.com/garyfagan1987" target="_blank" onclick="ga('send', 'event', 'External Link', 'Gary's Github');">garyfagan1987</a> | <a href="https://github.com/zsturgess" target="_blank" onclick="ga('send', 'event', 'External Link', 'Zac's Github');">zsturgess</a>
-            </p>
-
-            <p><a href="https://github.com/DesignyourCode/placing-bad" onclick="ga('send', 'event', 'External Link', 'Placing Bad's Github');">Visit the project on Github<br /><i class="fa fa-github"></i></a></p>
-        </footer>
+                <div class="support">
+                    <p><strong>A special thanks goes to the contributors on this project.</strong><br />
+                        <a href="https://github.com/DesignyourCode/placing-bad/graphs/contributors" target="_blank" onclick="ga('send', 'event', 'External Link', 'Contributors');">Visit the Github contributions page</a>
+                    </p>
+                </div>
+            </footer>
+        {% endblock %}
 
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -24,7 +24,7 @@
           }
         }
 
-        $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . '://' . $_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
         $template = $twig->loadTemplate('views/home.html.twig');
         echo $template->render(array(
@@ -57,6 +57,18 @@
     // Attribution
     $app->get('/attribution', function() use($app, $twig) {
         $template = $twig->loadTemplate('views/attribution.html.twig');
+        echo $template->render(array());
+    });
+
+    // Releases
+    $app->get('/releases', function() use($app, $twig) {
+        $template = $twig->loadTemplate('views/releases.html.twig');
+        echo $template->render(array());
+    });
+
+    // 404
+    $app->notFound(function () use ($app, $twig) {
+        $template = $twig->loadTemplate('views/404.html.twig');
         echo $template->render(array());
     });
 

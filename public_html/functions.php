@@ -1,12 +1,7 @@
 <?php
 
 use abeautifulsite\SimpleImage;
-
-function handle404()
-{
-    $app = \Slim\Slim::getInstance();
-    $app->response->redirect('/not-found', 303);
-}
+use Slim\Http\Request;
 
 function getBestImage($width, $height, $person)
 {
@@ -135,7 +130,7 @@ function applyFilters($img)
     if(isset($sepia)) {
         $img->sepia();
     }
-    
+
     return $img;
 }
 
@@ -143,11 +138,14 @@ function serve($width, $height, $person)
 {
     $app = \Slim\Slim::getInstance();
 
+    $request = $app->request();
+    $canRequestBeCached = canRequestBeCached($request, $person);
+
     $response = $app->response();
     $response['Content-Type'] = 'image/jpeg';
 
-    $cacheKey = getCacheKey($width, $height, $person);
-    if (isFileCached($cacheKey)) {
+    $cacheKey = getCacheKey($width, $height, $person, $request);
+    if ($canRequestBeCached && isFileCached($cacheKey)) {
         $img = new SimpleImage(getCacheFile($cacheKey));
     } else {
         $img = new SimpleImage(getBestImage($width, $height, $person));
@@ -164,17 +162,33 @@ function serve($width, $height, $person)
             $y2 = $centre + ($height / 2);
             $img->crop(0, $y1, $width, $y2);
         }
-        cacheImage($cacheKey, $img);
+
+        $img = applyFilters($img);
     }
 
-    $img = applyFilters($img);
+    if ($canRequestBeCached) {
+        cacheImage($cacheKey, $img);
+    }
 
     $img->output();
 }
 
-function getCacheKey($width, $height, $person)
+function canRequestBeCached(Request $request, $person)
 {
-    return "$width-$height-$person";
+    if (!$person || $person === 'all') {
+        return false;
+    }
+
+    if ($request->params('random') !== null) {
+        return false;
+    }
+
+    return true;
+}
+
+function getCacheKey($width, $height, $person, Request $request)
+{
+    return "$width-$height-$person-" . md5(serialize($request->params()));
 }
 
 function isFileCached($cacheKey)

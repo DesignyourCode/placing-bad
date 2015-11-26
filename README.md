@@ -13,7 +13,7 @@ Improvements
 
 We accept changes to the site, so if you feel the service doesn't quite offer everything you want, you can create a ticket and we will see what we can do.
 
-Of course you are welcome to to contribute too? Just fork a copy, make your changes and submit a merge request. We will review it and marge it in if we like it.
+Of course you are welcome to contribute too? Just fork a copy, make your changes and submit a merge request. We will review it and marge it in if we like it.
 
 
 Requirements & Installation
@@ -25,3 +25,43 @@ Requirements & Installation
     - <a href="https://github.com/claviska/SimpleImage" target="_blank">SimpleImage PHP Class</a>
 
 2. Set your localhost to use public_html as the root
+
+Parameters and Usage
+--------------------
+
+Placing Bad now supports url parameters for customisation your image request.
+
+Available options with their default values are:
+
+`desaturate => 100`
+`blur => 10`
+`brightness => 50`
+`color => FF0000`
+`pixelate => 8`
+`sepia`
+
+To use a parameter add it to the image url like so:
+
+```
+http://placingbad.com/800/420?desaturate
+```
+
+You can also set an option for most of the parameters. This is done like so:
+
+```
+http://placingbad.com/800/420?desaturate=10
+```
+
+You can also chain options together if you would like to customise it more:
+
+```
+http://placingbad.com/800/420?desaturate=10&blur&color=d2d2d2
+```
+
+#### Other available options include:
+
+'Random' will allow you to set a size and then every time you request the image, it will change.
+
+```
+http://placingbad.com/800/420?random
+```

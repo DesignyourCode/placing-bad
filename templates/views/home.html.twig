@@ -2,72 +2,51 @@
 
 {% block content %}
 
-    <div class="content">
-        <div class="left half">
-            <h2>Use it in your project:</h2>
-            <p>If you know the width and height:</p>
-            <pre>
-                <code>&lt;img src=&quot;{{ currenturl }}200/200&quot; /&gt;
-&lt;img src=&quot;{{ currenturl }}width/height&quot; /&gt;</code>
-            </pre>
+    <div class="section white-bg">
+        <h2 class="center-title"><i class="fa fa-play-circle-o"></i> Quick Start</h2>
 
-            <h3>If you want a square, just specify the width:</h3>
-            <pre>
-                <code>&lt;img src=&quot;{{ currenturl }}200&quot; /&gt;
-&lt;img src=&quot;{{ currenturl }}width&quot; /&gt;</code>
-            </pre>
-        </div>
-
-        <div class="right half">
-            <h2>Want a certain character...use any below</h2>
-            <p>Remember if you choose a character, you need to specify both height and width</p>
-            <pre>
-                <code>{% for person in people %}
-&lt;img src=&quot;{{ currenturl }}width/height/<strong>{{ person }}</strong>&quot; /&gt;
-{% endfor %}
-&lt;img src=&quot;{{ currenturl }}width/height/<strong>all</strong>&quot; /&gt;</code>
-            </pre>
-
-            <p><a href="/attribution" class="inline-link dark" onclick="ga('send', 'event', 'Internal Link', 'Image Attributions');"><i class="fa fa-link"></i> Image attributions</a></p>
-        </div>
-    </div>
-
-    <div class="sublime">
         <div class="content">
             <div class="left half">
-                <h2>Install this for sublime</h2>
-                <p><img src="assets/img/sublime-text-logo.png" alt="Sublime Text" /></p>
-                <ol>
-                    <li>Download the file below</li>
-                    <li>Extract it</li>
-                    <li>
-                        <strong>Save this file in:</strong><br />
-                        Home Directory > Library > Application Support > Sublime Text 3 > Packages > User
-                    </li>
-                </ol>
-                <p><a href="assets/download/placingbad.sublime-snippet.zip" class="btn light" onclick="ga('send', 'event', 'Sublime Link', 'Download');"><i class="fa fa-download"></i> Sublime Snippet</a></p>
+                <h2>Use it in your project:</h2>
+                <p>If you know the width and height:</p>
+                <pre><code class="language-html">&lt;img src=&quot;{{ currenturl }}200/200&quot; /&gt;
+&lt;img src=&quot;{{ currenturl }}width/height&quot; /&gt;</code></pre>
+
+                <h3>If you want a square, just specify the width:</h3>
+                <pre><code class="language-html">&lt;img src=&quot;{{ currenturl }}200&quot; /&gt;
+&lt;img src=&quot;{{ currenturl }}width&quot; /&gt;</code></pre>
+
+                <p class="social-links">
+                    <strong>Share this page:</strong>
+                    <a class="twitter-share" href="https://twitter.com/intent/tweet?hashtags=placingbad,imageplaceholder&amp;url=http%3A%2F%2Fplacingbad.com&amp;text=A%20Breaking%20Bad%20image%20placeholder%20generator%20&amp;tw_p=tweetbutton&amp;via=DesignyourCode" target="_blank"><i class="fa fa-twitter"></i></a>
+                    <a class="facebook-share" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fplacingbad.com" target="_blank"><i class="fa fa-facebook"></i></a>
+                    <a class="linked-in-share" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fplacingbad.com&amp;title=A%20Breaking%20Bad%20image%20placeholder%20generator" target="_blank"><i class="fa fa-linkedin"></i></a>
+                </p>
             </div>
 
             <div class="right half">
-                <h3>Alternative method:</h3>
-                <p><img src="assets/img/new-snippet.jpg" alt="New sublime snippet" class="responsive-img" /></p>
-                <pre><code>&lt;snippet&gt;
-    &lt;content&gt;&lt;![CDATA[
-        &lt;img src=&quot;http://placingbad.com/${1:200}/${2:200}&quot; /&gt;
-    ]]&gt;&lt;/content&gt;
-    &lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;
-    &lt;tabTrigger&gt;placebad&lt;/tabTrigger&gt;
-    &lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;
-    &lt;!-- &lt;scope&gt;source.python&lt;/scope&gt; --&gt;
-&lt;/snippet&gt;</code></pre>
+                <h2>Available Categories</h2>
+                <p>Categories include characters, locations, blue meth and some hidden gems for the die hard Breaking Bad fans.</p>
+                <p>For example: 'rock' shows a picture of a very angry Hank. 'Mineral' shows some of the minerals from Hanks collection.</p>
+
+                <p class="important"><i class="fa fa-exclamation-triangle"></i> Remember when using the below options to specify both height and width</p>
+
+                <pre>
+<code class="language-html">{% for person in people %}{% if person != 'mineral' or person != 'meth' %}&lt;img src=&quot;{{ currenturl }}width/height/<strong>{{ person }}</strong>&quot; /&gt;
+{% endif %}{% endfor %}
+
+&lt;!--'All' will let you get any image from any category--&gt;
+&lt;img src=&quot;{{ currenturl }}width/height/<strong>all</strong>&quot; /&gt;</code></pre>
+
+                <p class="links"><a href="/attribution" class="inline-link dark" onclick="ga('send', 'event', 'Internal Link', 'Image Attributions');"><i class="fa fa-link"></i> Image attributions</a><a href="/releases" class="inline-link dark right" onclick="ga('send', 'event', 'Internal Link', 'Changelogs - Quickstart');"><i class="fa fa-repeat"></i> View the changelogs</a></p>
             </div>
         </div>
     </div>
 
-    <div class="gallery">
-        <div class="content">
-            <h2>Examples</h2>
+    <div class="section light-grey-bg gallery">
+        <h2 class="center-title"><i class="fa fa-picture-o"></i> Examples</h2>
 
+        <div class="content">
             <div class="row-two">
                 <img class="three" src="{{ currenturl }}650/380/gus" />
                 <img class="two" src="{{ currenturl }}444/380" />
@@ -81,4 +60,96 @@
         </div>
     </div>
 
+    <div class="section white-bg">
+        <h2 class="center-title"><i class="fa fa-paint-brush"></i> Customisation</h2>
+
+        <div class="content">
+            <div class="left two-thirds">
+                <h2><i class="fa fa-star-o"></i> NEW: Extra Options</h2>
+                <h3>Placing Bad now supports url parameters for customising your image request.</h3>
+                <p>Available options with their default values are:</p>
+
+                <pre>
+<code class="language-html">desaturate => 100
+blur => 10
+brightness => 50
+color => FF0000
+pixelate => 8
+sepia (this does not accept any values)</code></pre>
+
+                <p>To use a parameter add it to the image url like so:</p>
+
+                <pre>
+<code class="language-html">&lt;img src=&quot;{{ currenturl }}width/height/<strong>?desaturate</strong>&quot; /&gt;</code></pre>
+
+                <p>You can also set an option for most of the parameters. This is done like so:</p>
+
+                <pre>
+<code class="language-html">&lt;img src=&quot;{{ currenturl }}width/height/?desaturate<strong>=10</strong>&quot; /&gt;</code></pre>
+
+                <p>You can also chain options together if you would like to customise it more:</p>
+
+                <pre>
+<code class="language-html">&lt;img src=&quot;{{ currenturl }}width/height?desaturate=10<strong>&blur&color=d2d2d2</strong>&quot; /&gt;</code></pre>
+
+                <h3>Other available options include:</h3>
+                <p>'Random' will allow you to set a size and then every time you request the image, it will change.</p>
+
+                <pre>
+<code class="language-html">&lt;img src=&quot;{{ currenturl }}width/height<strong>?random</strong>&quot; /&gt;</code></pre>
+
+                <p class="links"><a href="/releases" class="inline-link dark" onclick="ga('send', 'event', 'Internal Link', 'Changelogs - Customisation');"><i class="fa fa-repeat"></i> View the changelogs</a></p>
+            </div>
+
+            <div class="right third">
+                <h2><i class="fa fa-picture-o"></i> Parameter Examples</h2>
+
+                <div class="example-gallery">
+                    <img src="{{ currenturl }}180/180/hank?random" title="Random image each time" />
+                    <img src="{{ currenturl }}180/180/junior?desaturate" title="Desaturated" />
+                    <img src="{{ currenturl }}180/180/walter?color=5F9EA0" title="Predefined colour" />
+                    <img src="{{ currenturl }}180/180/skyler?sepia" title="Sepia" />
+                    <img src="{{ currenturl }}180/180?random&desaturate=50" title="Random image and desaturated 50%"  />
+                    <img src="{{ currenturl }}180/180/jesse?pixelate=4" title="Pixelated 4 (default 10)" />
+                    <img src="{{ currenturl }}180/180/mike?blur=6" title="Blurred by 6 (default 10)" />
+                    <img src="{{ currenturl }}180/180/saul?brightness=70" title="Brightness 70 (default 50)" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section dark-grey-bg">
+        <h2 class="center-title"><i class="fa fa-pencil-square-o"></i> Install for Sublime</h2>
+
+        <div class="content">
+            <div class="left third">
+                <h3>First method:</h3>
+
+                <p><img src="assets/img/sublime-text-logo.png" alt="Sublime Text" /></p>
+                <ol>
+                    <li>Download the file below</li>
+                    <li>Extract it</li>
+                    <li>
+                        <strong>Save this file in:</strong><br />
+                        Home Directory > Library > Application Support > Sublime Text 3 > Packages > User
+                    </li>
+                </ol>
+                <p><a href="assets/download/placingbad.sublime-snippet.zip" class="btn light" onclick="ga('send', 'event', 'Sublime Link', 'Download');"><i class="fa fa-download"></i> Sublime Snippet</a></p>
+            </div>
+
+            <div class="right two-thirds">
+                <h3>Second method:</h3>
+                <p><img src="assets/img/new-snippet.jpg" alt="New sublime snippet" class="responsive-img" /></p>
+                <pre><code class="language-xml">&lt;snippet&gt;
+    &lt;content&gt;&lt;![CDATA[
+        &lt;img src=&quot;http://placingbad.com/${1:200}/${2:200}&quot; /&gt;
+    ]]&gt;&lt;/content&gt;
+    &lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;
+    &lt;tabTrigger&gt;placebad&lt;/tabTrigger&gt;
+    &lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;
+    &lt;!-- &lt;scope&gt;source.python&lt;/scope&gt; --&gt;
+&lt;/snippet&gt;</code></pre>
+            </div>
+        </div>
+    </div>
 {% endblock %}

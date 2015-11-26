@@ -15,6 +15,7 @@ img {
 
 body {
     font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 }
 
 h1 {
@@ -24,10 +25,30 @@ h1 {
     line-height: 90px;
     text-transform: uppercase;
 }
+.page-not-found h1 {
+    margin: 0 0 20px;
+}
+
 h2 {
     font-size: 24px;
     line-height: 30px;
 }
+h2 .fa {
+    color: #aaaaaa;
+}
+
+.center-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 34px;
+    line-height: 38px;
+    text-align: center;
+    margin: 0 0 30px;
+    text-transform: uppercase;
+}
+.important {
+    color: #CC0000;
+}
+
 h3 {
     font-size: 18px;
     line-height: 26px;
@@ -42,8 +63,51 @@ p {
     margin-bottom: 10px;
 }
 
+ol {
+    margin: 0 0 20px 0;
+    padding: 0 0 0 20px;
+}
 ol li, ul li {
     margin-bottom: 6px;
+}
+
+.links {
+    margin-top: 20px;
+}
+
+/* Sharing links */
+.social-links {
+  display: table;
+  margin-top: 30px;
+}
+.social-links strong {
+    font-size: 16px;
+    margin-right: 10px;
+    position: relative;
+    top: 2px;
+}
+.social-links a {
+    background: #4a4a4a;
+    border-radius: 100%;
+    display: inline-block;
+    margin-right: 6px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    width: 30px;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+}
+.social-links a .fa {
+    color: #ffffff;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+}
+.social-links a:hover .fa {
+    color: #CEDCBE;
 }
 
 .responsive-img {
@@ -78,14 +142,13 @@ ol li, ul li {
 }
 
 .btn {
-    background: #CEDCBE;
-    color: #026635;
+    background: #333333;
+    color: #ffffff;
     font-size: 18px;
     display: inline-block;
     padding: 12px 20px;
     text-transform: uppercase;
     text-decoration: none;
-    margin: 10px 0 0 20px;
     -webkit-transition: all .3s ease-in-out;
        -moz-transition: all .3s ease-in-out;
         -ms-transition: all .3s ease-in-out;
@@ -93,7 +156,7 @@ ol li, ul li {
             transition: all .3s ease-in-out;
 }
 .btn:hover {
-    background: #026635;
+    background: #111111;
     color: #ffffff;
 }
 
@@ -140,7 +203,6 @@ header p {
 
 main {
     background: #ffffff;
-    padding: 40px 0;
 }
 
 /* Layout */
@@ -148,6 +210,11 @@ main {
     clear: both;
     display: inline-block;
     overflow: hidden;
+    width: 100%;
+}
+.narrow {
+    margin: 0 auto;
+    max-width: 600px;
     width: 100%;
 }
 .left {
@@ -159,10 +226,11 @@ main {
 .half {
     width: 48%;
 }
-.narrow {
-    margin: 0 auto;
-    max-width: 600px;
-    width: 90%;
+.third {
+    width: 36%;
+}
+.two-thirds {
+    width: 60%;
 }
 
 .content {
@@ -173,39 +241,38 @@ main {
     z-index: 1;
 }
 
-.sublime {
-    background: #4a4a4a;
-    color: #ffffff;
+.section {
     clear: both;
-    display: inline-block;
-    margin: 30px 0;
     overflow: hidden;
     padding: 50px 0;
+}
+
+.light-grey-bg {
+    background: #f9f9f9;
+    color: #5a5a5a;
+}
+.dark-grey-bg {
+    background: #4a4a4a;
+    color: #ffffff;
+}
+
+.sublime, .extras {
+    clear: both;
+    display: inline-block;
+    overflow: hidden;
     width: 100%;
 }
 
-pre, code {
-    margin: 0;
-}
-pre code {
-    font-size: 14px;
-    background: #f6f6f6;
-    text-align: left;
-    padding: 10px 14px !important;
-    color: #4a4a4a;
-    display: inline-block;
-    line-height: 18px;
-    width: 100%;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+.example-gallery img {
+    float: left;
+    margin: 0 1% 1% 0;
+    width: 48%;
 }
 
 footer {
     background: #f7f7f7;
     display: inline-block;
-    margin-top: 30px;
-    padding: 30px 0;
+    padding: 40px 0 0;
     text-align: center;
     width: 100%;
 }
@@ -232,8 +299,30 @@ footer .logo {
     max-width: 300px;
 }
 
-/* HighlightJS */
-.hljs{display:block;overflow-x:auto;padding:0.5em;background:#f0f0f0;-webkit-text-size-adjust:none}.hljs,.hljs-subst,.hljs-tag .hljs-title,.nginx .hljs-title{color:black}.hljs-string,.hljs-title,.hljs-constant,.hljs-parent,.hljs-tag .hljs-value,.hljs-rule .hljs-value,.hljs-preprocessor,.hljs-pragma,.hljs-name,.haml .hljs-symbol,.ruby .hljs-symbol,.ruby .hljs-symbol .hljs-string,.hljs-template_tag,.django .hljs-variable,.smalltalk .hljs-class,.hljs-addition,.hljs-flow,.hljs-stream,.bash .hljs-variable,.pf .hljs-variable,.apache .hljs-tag,.apache .hljs-cbracket,.tex .hljs-command,.tex .hljs-special,.erlang_repl .hljs-function_or_atom,.asciidoc .hljs-header,.markdown .hljs-header,.coffeescript .hljs-attribute,.tp .hljs-variable{color:#800}.smartquote,.hljs-comment,.hljs-annotation,.diff .hljs-header,.hljs-chunk,.asciidoc .hljs-blockquote,.markdown .hljs-blockquote{color:#888}.hljs-number,.hljs-date,.hljs-regexp,.hljs-literal,.hljs-hexcolor,.smalltalk .hljs-symbol,.smalltalk .hljs-char,.go .hljs-constant,.hljs-change,.lasso .hljs-variable,.makefile .hljs-variable,.asciidoc .hljs-bullet,.markdown .hljs-bullet,.asciidoc .hljs-link_url,.markdown .hljs-link_url{color:#080}.hljs-label,.ruby .hljs-string,.hljs-decorator,.hljs-filter .hljs-argument,.hljs-localvars,.hljs-array,.hljs-attr_selector,.hljs-important,.hljs-pseudo,.hljs-pi,.haml .hljs-bullet,.hljs-doctype,.hljs-deletion,.hljs-envvar,.hljs-shebang,.apache .hljs-sqbracket,.nginx .hljs-built_in,.tex .hljs-formula,.erlang_repl .hljs-reserved,.hljs-prompt,.asciidoc .hljs-link_label,.markdown .hljs-link_label,.vhdl .hljs-attribute,.clojure .hljs-attribute,.asciidoc .hljs-attribute,.lasso .hljs-attribute,.coffeescript .hljs-property,.hljs-phony{color:#88f}.hljs-keyword,.hljs-id,.hljs-title,.hljs-built_in,.css .hljs-tag,.hljs-doctag,.smalltalk .hljs-class,.hljs-winutils,.bash .hljs-variable,.pf .hljs-variable,.apache .hljs-tag,.hljs-type,.hljs-typename,.tex .hljs-command,.asciidoc .hljs-strong,.markdown .hljs-strong,.hljs-request,.hljs-status,.tp .hljs-data,.tp .hljs-io{font-weight:bold}.asciidoc .hljs-emphasis,.markdown .hljs-emphasis,.tp .hljs-units{font-style:italic}.nginx .hljs-built_in{font-weight:normal}.coffeescript .javascript,.javascript .xml,.lasso .markup,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:0.5}
+footer .support {
+    background: #eeeeee;
+    margin-top: 30px;
+    padding: 30px 0 20px;
+}
+
+footer .support p,
+footer .support a {
+    color: #888888;
+}
+footer .support strong {
+    font-size: 16px;
+}
+
+footer .support a {
+    margin: 0 30px;
+}
+
+footer .support a:hover {
+    color: #444444;
+}
+
+/* PrismJS */
+code[class*=language-],pre[class*=language-]{color:#f8f8f2;text-shadow:0 1px rgba(0,0,0,.3);font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background:#272822}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#f8f8f2}.namespace{opacity:.7}.token.constant,.token.deleted,.token.property,.token.symbol,.token.tag{color:#f92672}.token.boolean,.token.number{color:#ae81ff}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#a6e22e}.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable{color:#f8f8f2}.token.atrule,.token.attr-value,.token.function{color:#e6db74}.token.keyword{color:#66d9ef}.token.important,.token.regex{color:#fd971f}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}
 
 /* Responsive */
 @media only screen and (min-width: 1900px) {
