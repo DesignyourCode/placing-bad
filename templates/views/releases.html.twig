@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+    <img src="assets/img/release-header.jpg" class="header-img" />
+{% endblock %}
+
+{% block content %}
+    <div class="section white-bg">
+        <h1 class="center-title">Vamonos Pest Control has stamped out all these bugs</h1>
+    </div>
+
+    <div class="section light-grey-bg">
+        <div class="content">
+            <h2>Release v2.0.0</h2>
+            <p><strong>Novemeber 2015</strong></p>
+
+            <h3><i class="fa fa-bug"></i> Bugs</h3>
+            <ul>
+                <li>Using URL parameter on home page no longer breaks images</li>
+                <li>Image load times have been dramatically improved (caching added)</li>
+                <li></li>
+            </ul>
+
+            <h3><i class="fa fa-check"></i> Features</h3>
+            <ul>
+                <li>URl parameters for: sepia, desaturate, colour, blur, pixelate and brightness added</li>
+                <li>Random url parameter added so you can force a size to load a new image each time</li>
+                <li>All route added to get images from all categories</li>
+                <li>New categories added: lab, mineral, meth, rock</li>
+                <li>New people added: tuco, marie, todd</li>
+                <li>Homepage re-styled to include new features documentation and examples</li>
+                <li>Social sharing added - Share with your friends!</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section white-bg">
+        <div class="content">
+            <h2>Release v1.0.0 - Initial Release</h2>
+            <p><strong>Novemeber 2015</strong></p>
+
+            <h3><i class="fa fa-check"></i> Features</h3>
+            <ul>
+                <li>Original cast of characters</li>
+                <li>Sizes crop and serve images</li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

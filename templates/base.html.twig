@@ -42,15 +42,17 @@
 
 	<body>
         <header>
-            <img src="assets/img/bg.jpg" class="header-img" />
+            {% block header %}
+                <img src="assets/img/bg.jpg" class="header-img" />
 
-            <div class="content">
-    			<h1>Placing Bad</h1>
-                <div class="narrow">
-                    <p>This is a placeholder generator for developers to add to their sites, to help with testing. But what developer doesn't like Breaking Bad.</p>
-                    <p class="quote">&ldquo;I am the one who...adds placeholders to my site&rdquo;</p>
+                <div class="content">
+                    <h1>Placing Bad</h1>
+                    <div class="narrow">
+                        <p>This is a placeholder generator for developers to add to their sites, to help with testing. But what developer doesn't like Breaking Bad.</p>
+                        <p class="quote">&ldquo;I am the one who...adds placeholders to my site&rdquo;</p>
+                    </div>
                 </div>
-            </div>
+            {% endblock %}
         </header>
 
         <main>

@@ -60,4 +60,10 @@
         echo $template->render(array());
     });
 
+    // Releases
+    $app->get('/releases', function() use($app, $twig) {
+        $template = $twig->loadTemplate('views/releases.html.twig');
+        echo $template->render(array());
+    });
+
 $app->run();
