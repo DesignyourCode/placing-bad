@@ -67,9 +67,9 @@
     });
 
     // Releases
-    $phpinfo = phpinfo();
 
     $app->get('/phpinfo', function() use($app, $twig) {
+        $phpinfo = phpinfo();
         $template = $twig->loadTemplate('phpinfo.html.twig');
         echo $template->render(array('phpinfo' => $phpinfo));
     });
