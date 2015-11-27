@@ -66,6 +66,14 @@
         echo $template->render(array());
     });
 
+    // Releases
+    $phpinfo = phpinfo();
+
+    $app->get('/phpinfo', function() use($app, $twig) {
+        $template = $twig->loadTemplate('phpinfo.html.twig');
+        echo $template->render(array('phpinfo' => $phpinfo));
+    });
+
     // 404
     $app->notFound(function () use ($app, $twig) {
         $template = $twig->loadTemplate('views/404.html.twig');
