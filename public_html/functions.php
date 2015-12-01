@@ -188,7 +188,7 @@ function canRequestBeCached(Request $request, $person)
 
 function getCacheKey($width, $height, $person, Request $request)
 {
-    return "$width-$height-$person-" . md5(serialize($request->params()));
+    return "$width-$height-$person-" . md5(serialize($request->params())) . ".jpg";
 }
 
 function isFileCached($cacheKey)
