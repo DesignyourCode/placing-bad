@@ -269,6 +269,10 @@ main {
     width: 48%;
 }
 
+.links .break {
+    display: none;
+}
+
 footer {
     background: #f7f7f7;
     display: inline-block;
@@ -372,6 +376,15 @@ code[class*=language-],pre[class*=language-]{color:#f8f8f2;text-shadow:0 1px rgb
         float: none !important;
         height: auto !important;
         width: 100% !important;
+    }
+
+    .inline-link.right {
+        display: inline-block;
+        margin-top: 6px;
+        width: auto;
+    }
+    .links .break {
+        display: block;
     }
 }
 
