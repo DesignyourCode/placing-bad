@@ -45,7 +45,9 @@ $app->get('/{width}/{height}', function($width, $height, Request $request) use($
         die();
     }
     $app['images']->serve($width, $height, '', $request);
-});
+})
+->assert('width', '\d+');
+->assert('height', '\d+');
 
 $app->get('/{width}', function($width) use($app) {
     $app->redirect("/$width/$width", 303);
@@ -59,8 +61,8 @@ $app->get('/{width}/{height}/{person}', function($width, $height, $person, Reque
     }
     $app['images']->serve($width, $height, $person, $request);
 })
-->assert('width', '[\d]*')
-->assert('height', '[\d]*');
+->assert('width', '\d+')
+->assert('height', '\d+');
 
 // Attribution
 $app->get('/attribution', function() use($app) {
