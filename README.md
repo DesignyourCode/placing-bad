@@ -20,7 +20,7 @@ Requirements & Installation
 ---------------------------
 
 1. Run 'composer install'. This will install:
-    - <a href="http://www.slimframework.com/" target="_blank">Slim PHP Framework</a>
+    - <a href="http://silex.sensiolabs.org/" target="_blank">Silex PHP Framework</a>
     - <a href="http://twig.sensiolabs.org/" target="_blank">Twig PHP Templating Engine</a>
     - <a href="https://github.com/claviska/SimpleImage" target="_blank">SimpleImage PHP Class</a>
 

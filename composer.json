@@ -1,6 +1,6 @@
 {
     "require": {
-        "slim/slim": "~2.6",
+        "silex/silex": "~2.0",
         "twig/twig": "~1.0",
         "abeautifulsite/simpleimage": "2.5.5",
         "ext-gd": "*"
