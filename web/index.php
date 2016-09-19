@@ -16,6 +16,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), [
 $currentURL = (isset($_SERVER['HTTPS']) ? "https" : "http") . '://' . $_SERVER['HTTP_HOST'] . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 $app['twig']->addGlobal('currenturl', $currentURL);
+$app['debug'] = true;
 
 $app['images'] = function () use ($app) {
     return new Images($app);
@@ -46,13 +47,13 @@ $app->get('/{width}/{height}', function($width, $height, Request $request) use($
     }
     $app['images']->serve($width, $height, '', $request);
 })
-->assert('width', '\d+');
-->assert('height', '\d+');
+->assert('width', '[\d]*')
+->assert('height', '[\d]*');
 
 $app->get('/{width}', function($width) use($app) {
     $app->redirect("/$width/$width", 303);
 })
-->assert('width', '\d+');
+->assert('width', '[\d]*');
 
 $app->get('/{width}/{height}/{person}', function($width, $height, $person, Request $request) use($app) {
     if($width > 3000 || $height > 3000) {
@@ -61,8 +62,8 @@ $app->get('/{width}/{height}/{person}', function($width, $height, $person, Reque
     }
     $app['images']->serve($width, $height, $person, $request);
 })
-->assert('width', '\d+')
-->assert('height', '\d+');
+->assert('width', '[\d]*')
+->assert('height', '[\d]*');
 
 // Attribution
 $app->get('/attribution', function() use($app) {
