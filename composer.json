@@ -1,4 +1,6 @@
 {
+    "name": "placingbad",
+    "description": "Breaking Bad image placeholder generator",
     "require": {
         "silex/silex": "~2.0",
         "twig/twig": "~1.0",
